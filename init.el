@@ -72,7 +72,7 @@
 (require 'init-hippie-expand)
 (require 'init-company)
 (require 'init-windows)
-(require 'init-sessions)
+;; (require 'init-sessions)
 (require 'init-mmm)
 
 (require 'init-editing-utils)
@@ -120,6 +120,8 @@
 (require 'init-clojure)
 (require 'init-clojure-cider)
 (require 'init-common-lisp)
+(require 'init-cc)
+(require 'init-jce)
 
 (when *spell-check-support-enabled*
   (require 'init-spelling))
