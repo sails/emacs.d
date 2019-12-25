@@ -122,6 +122,7 @@
 (require 'init-common-lisp)
 (require 'init-cc)
 (require 'init-jce)
+(require 'init-golang)
 
 (when *spell-check-support-enabled*
   (require 'init-spelling))

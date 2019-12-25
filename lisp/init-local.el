@@ -2,6 +2,9 @@
 ;;; Commentary:
 ;;; Code:
 
+;; (set-frame-font "Menlo-12")
+;; (set-frame-font "Menlo-12")
+;; (set-fontset-font "fontset-default" 'han '("Monaco"))
 
 ;; 代码注释
 (defun qiang-comment-dwim-line (&optional arg)
@@ -40,6 +43,13 @@
       (kill-new new-kill-string)
       )
     )
+  )
+
+;; /sshs:devnet:~/
+(with-eval-after-load 'tramp
+  (tramp-set-completion-function "ssh"
+                                 '((tramp-parse-sconfig "/etc/ssh_config")
+                                   (tramp-parse-sconfig "~/.ssh/config")))
   )
 
 (provide 'init-local)
