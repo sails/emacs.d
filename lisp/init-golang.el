@@ -23,6 +23,7 @@
             (setq lsp-ui-sideline-ignore-duplicate t)
             ))
 
+(add-hook 'go-mode-hook #'lsp)
 
 
 (provide 'init-golang)
