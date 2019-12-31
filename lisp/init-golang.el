@@ -4,6 +4,7 @@
 
 
 (require-package 'go-mode)
+(require-package 'lsp-mode)
 (add-hook 'go-mode-hook
           (lambda ()
 

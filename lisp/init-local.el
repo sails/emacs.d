@@ -52,5 +52,13 @@
                                    (tramp-parse-sconfig "~/.ssh/config")))
   )
 
+(require-package 'yasnippet)
+(require-package 'yasnippet-snippets)
+(setq yas/prompt-functions '(yas/dropdown-prompt))
+(yas-global-mode 1)
+
+;; quickrun
+(require-package 'quickrun)
+
 (provide 'init-local)
 ;;; init-local.el ends here
