@@ -60,5 +60,37 @@
 ;; quickrun
 (require-package 'quickrun)
 
+;; exec-path-from-shell
+(require-package 'exec-path-from-shell)
+;; 这个插件很厉害，可以得到环境变量的值, 它会自动复制MANPATH, PATH and exec-path，
+;; 其它的要通过(exec-path-from-shell-copy-env "GOPATH")的方式来设置
+(when (memq window-system '(mac ns))
+  (exec-path-from-shell-initialize)
+  (exec-path-from-shell-copy-env "GOPATH")
+  )
+
+;; eshell-toggle
+(require-package 'eshell-toggle)
+(require 'eshell-toggle)
+(global-set-key "\M-j" 'eshell-toggle)
+
+
+;; 代码折叠
+(add-hook 'c-mode-hook 'hs-minor-mode)
+(add-hook 'lua-mode-hook 'hs-minor-mode)
+(add-hook 'c++-mode-hook 'hs-minor-mode)
+(add-hook 'go-mode-hook 'hs-minor-mode)
+(if (display-graphic-p)
+    (progn
+      ;; if graphic
+      (global-set-key (kbd "C-=") 'hs-show-block)
+      (global-set-key (kbd "C--") 'hs-hide-block)
+      )
+  ;; else (optional)
+  (global-set-key (kbd "C-c =") 'hs-show-block)
+  (global-set-key (kbd "C-c -") 'hs-hide-block)
+  )
+
+
 (provide 'init-local)
 ;;; init-local.el ends here
