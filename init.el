@@ -123,6 +123,7 @@
 (require 'init-cc)
 (require 'init-jce)
 (require 'init-golang)
+(require 'init-gtags)
 
 (when *spell-check-support-enabled*
   (require 'init-spelling))
