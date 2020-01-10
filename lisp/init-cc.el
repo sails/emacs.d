@@ -15,6 +15,7 @@
                                           (topmost-intro . 0)
                                           ))))
 
+
 (add-hook 'c-mode-common-hook
           (lambda ()
 
@@ -38,7 +39,19 @@
               (set (make-local-variable 'company-backends)
                    '(company-gtags)
                    )
-              )))
+              )
+
+            ;; 可以很方便的在头文件与cpp文件中切换
+            (setq cc-other-file-alist
+                  '(("\\.c"   (".h"))
+                    ("\\.cpp"   (".h"))
+                    ("\\.h"   (".c"".cpp"".cc"))))
+            (setq ff-search-directories
+                  '("." "../src" "../include"))
+
+            (local-set-key  (kbd "C-c o") 'ff-find-other-file)
+
+            ))
 
 
 
