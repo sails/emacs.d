@@ -92,5 +92,18 @@
   )
 
 
+;; firestarter
+(require-package 'firestarter)
+(firestarter-mode)
+
+;; helm
+(require-package 'helm)
+(require-package 'helm-ag)
+(global-set-key (kbd "C-x c i") 'helm-semantic-or-imenu)
+
+
+
+
+
 (provide 'init-local)
 ;;; init-local.el ends here
