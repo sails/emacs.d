@@ -103,7 +103,7 @@
 
 
 ;; 时间转换
-(defun time-cover (start end)
+(defun time-convert (start end)
   "Cover time between timestramp and date for region START and END."
   (interactive "r")
   (let (input-str ts time-str)
