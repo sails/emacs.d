@@ -102,7 +102,23 @@
 (global-set-key (kbd "C-x c i") 'helm-semantic-or-imenu)
 
 
-
+;; 时间转换
+(defun time-cover (start end)
+  "Cover time between timestramp and date for region START and END."
+  (interactive "r")
+  (let (input-str ts time-str)
+    (setq input-str (buffer-substring start end))
+    (if (> (string-to-number input-str) 100000)
+        (progn
+          (setq ts (string-to-number input-str))
+          (setq time-str (format-time-string "%Y-%m-%d %T" (seconds-to-time ts)))
+          (message "%s" time-str))
+      (progn
+        (setq time-str input-str)
+        (setq ts (string-to-number (format-time-string "%s" (date-to-time time-str))))
+        (message "%d" ts)
+        ))
+    ))
 
 
 (provide 'init-local)
