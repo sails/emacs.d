@@ -3,21 +3,20 @@
 ;;; Code:
 
 
-;; 基于google style修改编程风格
-(require-package 'google-c-style)
-(c-add-style "Google" google-c-style)
-(c-add-style "mine" '("Google"
-                      (c-basic-offset . 4)
-                      (c-offsets-alist . ((innamespace . 0)
-                                          (access-label . -3)
-                                          (case-label . 0)
-                                          (member-init-intro . +)
-                                          (topmost-intro . 0)
-                                          ))))
-
-
 (add-hook 'c-mode-common-hook
           (lambda ()
+
+            ;; 基于google style修改编程风格
+            (require-package 'google-c-style)
+            (c-add-style "Google" google-c-style)
+            (c-add-style "mine" '("Google"
+                                  (c-basic-offset . 4)
+                                  (c-offsets-alist . ((innamespace . 0)
+                                                      (access-label . -3)
+                                                      (case-label . 0)
+                                                      (member-init-intro . +)
+                                                      (topmost-intro . 0)
+                                                      ))))
 
             (google-set-c-style)
             (c-set-style "mine")
