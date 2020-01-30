@@ -19,6 +19,7 @@
 (add-hook 'c-mode-common-hook
           (lambda ()
 
+            (google-set-c-style)
             (c-set-style "mine")
 
             ;; helm-gtags
@@ -50,7 +51,6 @@
                   '("." "../src" "../include"))
 
             (local-set-key  (kbd "C-c o") 'ff-find-other-file)
-
             ))
 
 
