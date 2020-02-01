@@ -45,7 +45,7 @@
     )
   )
 
-;; /sshs:devnet:~/
+;; /sshx:devnet:~/
 (with-eval-after-load 'tramp
   (tramp-set-completion-function "ssh"
                                  '((tramp-parse-sconfig "/etc/ssh_config")
