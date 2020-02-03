@@ -104,6 +104,14 @@
 
 (require 'init-convert)
 
+;; terminal copy-paste(copy from terminal-emacs to system (clip)board)
+;; when paste, can't use ctrl+y, use terminal paste
+(when (not (display-graphic-p))
+  (progn
+    (require-package 'clipetty)
+    (global-clipetty-mode)
+    ))
+
 
 (provide 'init-local)
 ;;; init-local.el ends here
