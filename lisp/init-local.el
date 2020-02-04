@@ -105,7 +105,7 @@
 (require 'init-convert)
 
 ;; terminal copy-paste(copy from terminal-emacs to system (clip)board)
-;; when paste, can't use ctrl+y, use terminal paste
+;; when paste into emacs use command+v instead of ctrl+y
 (when (not (display-graphic-p))
   (progn
     (require-package 'clipetty)
