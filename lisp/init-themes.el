@@ -18,7 +18,10 @@
   (dolist (theme custom-enabled-themes)
     (unless (custom-theme-p theme)
       (load-theme theme)))
-  (custom-set-variables `(custom-enabled-themes (quote ,custom-enabled-themes))))
+  (custom-set-variables `(custom-enabled-themes (quote ,custom-enabled-themes)))
+  ;; 取消注释的斜体设置
+  (make-face-unitalic 'font-lock-comment-face)
+  )
 
 (add-hook 'after-init-hook 'reapply-themes)
 

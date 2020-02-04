@@ -2,9 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-;; (set-frame-font "Menlo-12")
-;; (set-frame-font "Menlo-12")
-;; (set-fontset-font "fontset-default" 'han '("Monaco"))
+;; (set-fontset-font t 'han (font-spec :family "Heiti SC" :size 12))
 
 ;; 代码注释
 (defun qiang-comment-dwim-line (&optional arg)
@@ -111,7 +109,6 @@
     (require-package 'clipetty)
     (global-clipetty-mode)
     ))
-
 
 (provide 'init-local)
 ;;; init-local.el ends here
