@@ -52,6 +52,10 @@
 
 (require-package 'yasnippet)
 (require-package 'yasnippet-snippets)
+(with-eval-after-load 'yasnippet
+  (progn
+    (append yas-snippet-dirs '("~/.emacs.d/snippets" . "~/workspace/emacs/snippets"))
+    ))
 (setq yas/prompt-functions '(yas/dropdown-prompt))
 (yas-global-mode 1)
 

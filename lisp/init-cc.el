@@ -37,7 +37,7 @@
             ;; company
             (after-load 'company
               (set (make-local-variable 'company-backends)
-                   '(company-gtags)
+                   '(company-gtags company-clang company-lsp)
                    )
               )
 
