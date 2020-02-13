@@ -23,6 +23,7 @@
             (setq lsp-ui-sideline-enable nil)
             (setq lsp-ui-sideline-ignore-duplicate t)
             (setq lsp-enable-file-watchers nil)
+
             ))
 
 (add-hook 'go-mode-hook #'lsp)

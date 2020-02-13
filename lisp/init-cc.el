@@ -34,6 +34,15 @@
               (define-key helm-gtags-mode-map (kbd "M-s") 'helm-gtags-find-symbol)
               (define-key helm-gtags-mode-map (kbd "M-,") 'helm-gtags-pop-stack))
 
+            ;; (require-package 'ccls)
+            ;; (require 'ccls)
+            ;; (setq ccls-executable "/usr/local/bin/ccls")
+            (require-package 'lsp-mode)
+            (add-hook 'c-mode-hook #'lsp)
+            (add-hook 'c++-mode-hook #'lsp)
+            (setq lsp-enable-file-watchers nil)
+
+
             ;; company
             (after-load 'company
               (set (make-local-variable 'company-backends)
