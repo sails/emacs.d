@@ -37,16 +37,20 @@
             ;; (require-package 'ccls)
             ;; (require 'ccls)
             ;; (setq ccls-executable "/usr/local/bin/ccls")
-            (require-package 'lsp-mode)
-            (add-hook 'c-mode-hook #'lsp)
-            (add-hook 'c++-mode-hook #'lsp)
-            (setq lsp-enable-file-watchers nil)
+            ;; (require-package 'lsp-mode)
+            ;; (add-hook 'c-mode-hook #'lsp)
+            ;; (add-hook 'c++-mode-hook #'lsp)
+            ;; (setq lsp-enable-file-watchers nil)
+            ;; (require-package 'company-lsp)
 
 
             ;; company
+
             (after-load 'company
+              (require 'company-dabbrev)
               (set (make-local-variable 'company-backends)
                    '(company-gtags company-clang company-lsp)
+                   ;; '(company-lsp company-dabbrev company-gtags company-clang)
                    )
               )
 
