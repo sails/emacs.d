@@ -37,20 +37,28 @@
             ;; (require-package 'ccls)
             ;; (require 'ccls)
             ;; (setq ccls-executable "/usr/local/bin/ccls")
-            ;; (require-package 'lsp-mode)
-            ;; (add-hook 'c-mode-hook #'lsp)
-            ;; (add-hook 'c++-mode-hook #'lsp)
-            ;; (setq lsp-enable-file-watchers nil)
-            ;; (require-package 'company-lsp)
+            (require-package 'lsp-mode)
+            ;; (require 'lsp)
+            (add-hook 'c-mode-hook #'lsp)
+            (add-hook 'c++-mode-hook #'lsp)
+            (setq lsp-enable-file-watchers nil)
+            (require-package 'company-lsp)
 
+            (with-eval-after-load 'lsp-mode (lsp-register-client
+                                             (make-lsp-client
+                                              :new-connection (lsp-tramp-connection "/data/sailsxu/install/llvm-project/Release/bin/clangd")
+                                              ;; :new-connection (lsp-tramp-connection "/usr/local/bin/ccls")
+                                              :major-modes '(c-mode c++-mode)
+                                              :remote? t
+                                              :server-id 'c++-remote)))
 
             ;; company
 
             (after-load 'company
               (require 'company-dabbrev)
               (set (make-local-variable 'company-backends)
-                   '(company-gtags company-clang company-lsp)
-                   ;; '(company-lsp company-dabbrev company-gtags company-clang)
+                   ;; '(company-gtags company-clang company-lsp)
+                   '(company-lsp company-dabbrev company-gtags company-clang)
                    )
               )
 

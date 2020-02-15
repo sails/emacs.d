@@ -43,12 +43,8 @@
     )
   )
 
-;; /sshx:devnet:~/
-(with-eval-after-load 'tramp
-  (tramp-set-completion-function "ssh"
-                                 '((tramp-parse-sconfig "/etc/ssh_config")
-                                   (tramp-parse-sconfig "~/.ssh/config")))
-  )
+
+
 
 (require-package 'yasnippet)
 (require-package 'yasnippet-snippets)
@@ -112,7 +108,13 @@
   (progn
     (require-package 'clipetty)
     (global-clipetty-mode)
+    (define-key input-decode-map "\e\eOA" [(meta up)])
+    (define-key input-decode-map "\e\eOB" [(meta down)])
+
     ))
+
+
+
 
 (provide 'init-local)
 ;;; init-local.el ends here
