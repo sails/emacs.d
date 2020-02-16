@@ -24,6 +24,8 @@
             (setq lsp-ui-sideline-ignore-duplicate t)
             (setq lsp-enable-file-watchers nil)
 
+            (setq-default flycheck-disabled-checkers '(go-build go-vet))
+
             ))
 
 (add-hook 'go-mode-hook #'lsp)

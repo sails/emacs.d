@@ -38,11 +38,10 @@
             ;; (require 'ccls)
             ;; (setq ccls-executable "/usr/local/bin/ccls")
             (require-package 'lsp-mode)
-            ;; (require 'lsp)
             (add-hook 'c-mode-hook #'lsp)
             (add-hook 'c++-mode-hook #'lsp)
             (setq lsp-enable-file-watchers nil)
-            (require-package 'company-lsp)
+
 
             (with-eval-after-load 'lsp-mode (lsp-register-client
                                              (make-lsp-client
@@ -52,15 +51,19 @@
                                               :remote? t
                                               :server-id 'c++-remote)))
 
-            ;; company
 
+            ;; company
+            (require-package 'company-lsp)
             (after-load 'company
               (require 'company-dabbrev)
               (set (make-local-variable 'company-backends)
-                   ;; '(company-gtags company-clang company-lsp)
+                   ;;'(company-gtags company-lsp)
                    '(company-lsp company-dabbrev company-gtags company-clang)
                    )
               )
+
+            ;; 去掉lsp检查
+            (setq-default flycheck-disabled-checkers '(lsp))
 
             ;; 可以很方便的在头文件与cpp文件中切换
             (setq cc-other-file-alist
@@ -72,7 +75,6 @@
 
             (local-set-key  (kbd "C-c o") 'ff-find-other-file)
             ))
-
 
 
 (provide 'init-cc)
