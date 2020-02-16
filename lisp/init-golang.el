@@ -26,9 +26,17 @@
 
             (setq-default flycheck-disabled-checkers '(go-build go-vet))
 
+
+
             ))
 
 (add-hook 'go-mode-hook #'lsp)
+(with-eval-after-load 'lsp-mode (lsp-register-client
+                                 (make-lsp-client
+                                  :new-connection (lsp-tramp-connection "/data/sailsxu/go_proj/bin/gopls")
+                                  :major-modes '(go-mode)
+                                  :remote? t
+                                  :server-id 'go-remote)))
 
 
 (provide 'init-golang)
