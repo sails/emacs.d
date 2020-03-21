@@ -52,7 +52,7 @@
   (progn
     (append yas-snippet-dirs '("~/.emacs.d/snippets" . "~/workspace/emacs/snippets"))
     ))
-(setq yas/prompt-functions '(yas/dropdown-prompt))
+;;(setq yas/prompt-functions '(yas/dropdown-prompt))
 (yas-global-mode 1)
 
 ;; quickrun
