@@ -20,6 +20,15 @@
 ;; 高效的选中region
 (require-package 'expand-region)
 (global-set-key (kbd "C-x m") 'er/expand-region)
+(if (display-graphic-p)
+    (progn
+      ;; if graphic
+      )
+  ;; else (optional)
+  ;; 默认情况下,在终端下区分度不大
+  (set-face-background 'region "white")
+  (set-face-foreground 'region "black")
+  )
 
 ;; 复制当前buffer name
 (defun copy-file-name(choice)
