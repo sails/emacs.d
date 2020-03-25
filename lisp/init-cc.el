@@ -24,7 +24,6 @@
 
             ;; company
             ;; company-mode 如果太慢执行company-diag查看backend
-            (require-package 'company-lsp)
             (require 'company-clang)
             (require 'company-dabbrev)
             (set (make-local-variable 'company-backends)
