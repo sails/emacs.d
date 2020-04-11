@@ -26,8 +26,9 @@
             ;; company-mode 如果太慢执行company-diag查看backend
             (require 'company-clang)
             (require 'company-dabbrev)
+            (require 'company-tabnine)
             (set (make-local-variable 'company-backends)
-                 '((company-lsp company-clang company-files company-keywords)
+                 '((company-lsp company-tabnine company-clang company-files company-keywords)
                    (company-abbrev company-dabbrev)
                    ;; 如果不在这最后加一个company-lsp，lsp-mode会调用add-to-list把company-lsp加到company-keywords最前面，
                    ;; 导致company-lsp不能同其它后端在一个组里
@@ -78,6 +79,18 @@
                   '("." "../src" "../include"))
 
             (local-set-key  (kbd "C-c o") 'ff-find-other-file)
+
+            (require-package 'quickrun)
+            (quickrun-add-command "c++/c11"
+              '((:command . "g++")
+                (:exec    . ("%c -std=c++11 %o -o %e %s"
+                             "%e %a"))
+                (:remove  . ("%e")))
+              :default "c++")
+
+            (setq flycheck-gcc-language-standard "c++11")
+            (setq flycheck-clang-language-standard "c++11")
+
             ))
 
 
