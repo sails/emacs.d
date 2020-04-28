@@ -2,7 +2,12 @@
 ;;; Commentary:
 ;;; Code:
 
-;; (set-fontset-font t 'han (font-spec :family "Heiti SC" :size 12))
+;; (set-fontset-font t 'han (font-spec :family "Heiti SC" :size 14))
+;; (set-default-font "Monaco 13")
+
+;; Increase the amount of data which Emacs reads from the process
+;; Considering that the some of the language server responses are in 800k - 3M range.
+(setq read-process-output-max (* 1024 1024)) ;; 1mb
 
 ;; 代码注释
 (defun qiang-comment-dwim-line (&optional arg)
@@ -20,15 +25,8 @@
 ;; 高效的选中region
 (require-package 'expand-region)
 (global-set-key (kbd "C-x m") 'er/expand-region)
-(if (display-graphic-p)
-    (progn
-      ;; if graphic
-      )
-  ;; else (optional)
-  ;; 默认情况下,在终端下区分度不大
-  (set-face-background 'region "white")
-  (set-face-foreground 'region "black")
-  )
+;; 有某些主题中,终端下区分度不大
+;; (set-face-attribute 'region nil :background "#666" :foreground "#ffffff")
 
 ;; 复制当前buffer name
 (defun copy-file-name(choice)
@@ -121,8 +119,6 @@
     (define-key input-decode-map "\e\eOB" [(meta down)])
 
     ))
-
-
 
 
 (provide 'init-local)
