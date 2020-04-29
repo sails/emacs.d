@@ -26,7 +26,7 @@
 (require-package 'expand-region)
 (global-set-key (kbd "C-x m") 'er/expand-region)
 ;; 有某些主题中,终端下区分度不大
-;; (set-face-attribute 'region nil :background "#666" :foreground "#ffffff")
+(set-face-attribute 'region nil :background "#6666" :foreground "#ffffff")
 
 ;; 复制当前buffer name
 (defun copy-file-name(choice)
