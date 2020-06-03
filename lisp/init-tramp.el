@@ -20,7 +20,6 @@
 (setq tramp-verbose 1)
 
 (with-eval-after-load 'tramp
-  (message "on tramp")
   (eval-after-load 'tramp '(setenv "SHELL" "/bin/bash"))
   (add-to-list 'tramp-remote-path '("/data/sailsxu/vas_go_proj/bin" "/data/sailsxu/go_proj/bin" "/usr/local/go/bin"))
   )
