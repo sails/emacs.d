@@ -59,7 +59,7 @@
 
             (with-eval-after-load 'lsp-mode (lsp-register-client
                                              (make-lsp-client
-                                              :new-connection (lsp-tramp-connection "/data/sailsxu/install/llvm-project/Release/bin/clangd")
+                                              :new-connection (lsp-tramp-connection "/usr/local/bin/clangd")
                                               ;; :new-connection (lsp-tramp-connection "/usr/local/bin/ccls")
                                               :major-modes '(c-mode c++-mode)
                                               :remote? t
