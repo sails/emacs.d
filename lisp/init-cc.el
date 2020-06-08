@@ -98,6 +98,7 @@
             (custom-set-variables
              '(flycheck-google-cpplint-verbose "3")
              '(flycheck-google-cpplint-linelength "100"))
+            ;; 确保安装了cppcheck和cpplint.py
             (flycheck-add-next-checker 'c/c++-cppcheck 'c/c++-googlelint)
 
             ))
