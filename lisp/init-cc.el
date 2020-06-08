@@ -22,6 +22,16 @@
             (google-set-c-style)
             (google-make-newline-indent)
 
+            ;; flycheck 设置
+            (flycheck-mode 1)
+            (require 'flycheck-google-cpplint)
+            (setq flycheck-clang-language-standard "c++11")
+            (flycheck-add-next-checker 'c/c++-cppcheck
+                                       '(warning . c/c++-googlelint))
+            (flycheck-select-checker 'c/c++-cppcheck)
+            (setq flycheck-cppcheck-checks (quote ("style" "all")))
+            (setq flycheck-googlelint-linelength "100")
+
             ;; company
             ;; company-mode 如果太慢执行company-diag查看backend
             (require 'company-clang)
@@ -54,6 +64,7 @@
             ;; (require 'ccls)
             ;; (setq ccls-executable "/usr/local/bin/ccls")
             (require-package 'lsp-mode)
+
             (add-hook 'c-mode-hook #'lsp)
             (add-hook 'c++-mode-hook #'lsp)
             (setq lsp-enable-file-watchers nil)
@@ -68,8 +79,11 @@
 
 
 
-            ;; 去掉lsp检查
-            (setq-default flycheck-disabled-checkers '(lsp))
+            ;; lsp的自动配置过程会把flycheck重置
+            (setq lsp-auto-configure nil)
+            ;; ;; 去掉lsp检查
+            ;; (setq-default flycheck-disabled-checkers '(lsp))
+
 
             ;; 可以很方便的在头文件与cpp文件中切换
             (setq cc-other-file-alist
@@ -81,6 +95,8 @@
 
             (local-set-key  (kbd "C-c o") 'ff-find-other-file)
 
+
+
             (require-package 'quickrun)
             (quickrun-add-command "c++/c11"
               '((:command . "g++")
@@ -88,21 +104,14 @@
                              "%e %a"))
                 (:remove  . ("%e")))
               :default "c++")
-
-            (setq flycheck-gcc-language-standard "c++11")
-            (setq flycheck-clang-language-standard "c++11")
-
-            ;; add cpp checkers
-            (require 'flycheck-google-cpplint)
-
-            (custom-set-variables
-             '(flycheck-google-cpplint-verbose "3")
-             '(flycheck-google-cpplint-linelength "100"))
-            ;; 确保安装了cppcheck和cpplint.py
-            (flycheck-add-next-checker 'c/c++-cppcheck 'c/c++-googlelint)
+            ;; (setq flycheck-gcc-language-standard "c++11")
+            ;; (setq flycheck-clang-language-standard "c++11")
 
             ))
 
 
 (provide 'init-cc)
+
+
+
 ;;; init-cc.el ends here
