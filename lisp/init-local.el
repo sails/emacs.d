@@ -127,5 +127,8 @@
 ;; rg搜索
 (require-package 'deadgrep)
 
+;; clang-format
+(require-package 'clang-format)
+
 (provide 'init-local)
 ;;; init-local.el ends here

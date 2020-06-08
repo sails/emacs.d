@@ -8,25 +8,26 @@
 
             ;; 基于google style修改编程风格
             (require-package 'google-c-style)
-            (c-add-style "Google" google-c-style)
-            (c-add-style "mine" '("Google"
-                                  (c-basic-offset . 4)
-                                  (c-offsets-alist . ((innamespace . 0)
-                                                      (access-label . -3)
-                                                      (case-label . 0)
-                                                      (member-init-intro . +)
-                                                      (topmost-intro . 0)
-                                                      ))))
+            ;; (c-add-style "mine" '("Google"
+            ;;                       (c-basic-offset . 4)
+            ;;                       (c-offsets-alist . ((innamespace . 0)
+            ;;                                           (access-label . -3)
+            ;;                                           (case-label . 0)
+            ;;                                           (member-init-intro . +)
+            ;;                                           (topmost-intro . 0)
+            ;;                                           ))))
 
+            ;; (google-set-c-style)
+            ;; (c-set-style "mine")
             (google-set-c-style)
-            (c-set-style "mine")
-
+            (google-make-newline-indent)
 
             ;; company
             ;; company-mode 如果太慢执行company-diag查看backend
             (require 'company-clang)
             (require 'company-dabbrev)
-            (require 'company-tabnine)
+            (require-package 'company-lsp)
+            (require-package 'company-tabnine)
             (set (make-local-variable 'company-backends)
                  '((company-lsp company-tabnine company-clang company-files company-keywords)
                    (company-abbrev company-dabbrev)
@@ -90,6 +91,14 @@
 
             (setq flycheck-gcc-language-standard "c++11")
             (setq flycheck-clang-language-standard "c++11")
+
+            ;; add cpp checkers
+            (require 'flycheck-google-cpplint)
+
+            (custom-set-variables
+             '(flycheck-google-cpplint-verbose "3")
+             '(flycheck-google-cpplint-linelength "100"))
+            (flycheck-add-next-checker 'c/c++-cppcheck 'c/c++-googlelint)
 
             ))
 
