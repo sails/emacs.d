@@ -38,9 +38,10 @@
             (require 'company-clang)
             (require 'company-dabbrev)
             (require-package 'company-lsp)
-            (require-package 'company-tabnine)
+            ;; (require-package 'company-tabnine)
             (set (make-local-variable 'company-backends)
-                 '((company-lsp company-tabnine company-clang company-files company-keywords)
+                 ;; '((company-lsp company-tabnine company-clang company-files company-keywords)
+                 '((company-lsp company-clang company-files company-keywords)
                    (company-abbrev company-dabbrev)
                    ;; 如果不在这最后加一个company-lsp，lsp-mode会调用add-to-list把company-lsp加到company-keywords最前面，
                    ;; 导致company-lsp不能同其它后端在一个组里
