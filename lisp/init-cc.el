@@ -30,6 +30,7 @@
                                        '(warning . c/c++-googlelint))
             (flycheck-select-checker 'c/c++-cppcheck)
             (setq flycheck-cppcheck-checks (quote ("style" "all")))
+            (setq flycheck-googlelint-filter "-legal/copyright,-build/include_subdir")
             (setq flycheck-googlelint-linelength "100")
 
             ;; company
