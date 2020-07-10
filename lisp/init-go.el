@@ -1,4 +1,4 @@
-;;; init-golang.el ---  golang -*- lexical-binding: t -*-
+;;; init-go.el ---  golang -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -29,7 +29,7 @@
             (setq lsp-ui-sideline-ignore-duplicate t)
             (setq lsp-enable-file-watchers nil)
 
-            (setq-default flycheck-disabled-checkers '(go-build go-vet))
+            ;; (setq-default flycheck-disabled-checkers '(go-build go-vet))
 
             (require-package 'lsp-mode)
             (with-eval-after-load 'lsp-mode (lsp-register-client
@@ -39,5 +39,5 @@
                                               :remote? t
                                               :server-id 'go-remote)))))
 
-(provide 'init-golang)
+(provide 'init-go)
 ;;; init-golang.el ends here

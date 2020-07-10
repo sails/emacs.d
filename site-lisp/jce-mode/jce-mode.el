@@ -59,7 +59,6 @@
 (c-lang-defconst c-operators
   "List describing all operators, along with their precedence and
 associativity.
-
 See `cc-langs.el'."
   jce '((prefix "#")))
 
@@ -99,10 +98,8 @@ See `cc-langs.el'."
   "Major mode for editing C: (pronounced \"big nose\") code.
 This is a simple example of a separate mode derived from CC Mode to
 support a language with syntax similar to C/C++/ObjC/Java/IDL/Pike.
-
 The hook `c-mode-common-hook' is run with no args at mode
 initialization, then `jce-mode-hook'.
-
 Key bindings:
 \\{jce-mode-map}"
   (interactive)
@@ -124,10 +121,11 @@ Key bindings:
   ;; only makes the necessary initialization to get the syntactic
   ;; analysis and similar things working.
   (c-common-init 'jce-mode)
-                                        ;  (easy-menu-add c:-menu)
-  (c-run-mode-hooks 'c-mode-common-hook 'jce-mode-hook)
+;  (easy-menu-add c:-menu)
+  ;; (run-hooks 'c-mode-common-hook)
+  (run-hooks 'jce-mode-hook)
   (c-update-modeline))
 
 (provide 'jce-mode)
 
-;;; jce-mode.el ends here
+;;; jce-mode.el ends here.

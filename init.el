@@ -24,7 +24,7 @@
 ;;----------------------------------------------------------------------------
 ;; Adjust garbage collection thresholds during startup, and thereafter
 ;;----------------------------------------------------------------------------
-(let ((normal-gc-cons-threshold (* 200 1024 1024))
+(let ((normal-gc-cons-threshold (* 20 1024 1024))
       (init-gc-cons-threshold (* 128 1024 1024)))
   (setq gc-cons-threshold init-gc-cons-threshold)
   (add-hook 'emacs-startup-hook
@@ -88,41 +88,41 @@
 (require 'init-crontab)
 (require 'init-textile)
 (require 'init-markdown)
-(require 'init-csv)
-(require 'init-erlang)
-(require 'init-javascript)
-(require 'init-php)
+;; (require 'init-csv)
+;; (require 'init-erlang)
+;; (require 'init-javascript)
+;; (require 'init-php)
 (require 'init-org)
-(require 'init-nxml)
-(require 'init-html)
-(require 'init-css)
-(require 'init-haml)
-(require 'init-http)
+;; (require 'init-nxml)
+;; (require 'init-html)
+;; (require 'init-css)
+;; (require 'init-haml)
+;; (require 'init-http)
 (require 'init-python)
 (require 'init-haskell)
-(require 'init-elm)
-(require 'init-purescript)
-(require 'init-ruby)
-(require 'init-rails)
+;; (require 'init-elm)
+;; (require 'init-purescript)
+;; (require 'init-ruby)
+;; (require 'init-rails)
 (require 'init-sql)
-(require 'init-rust)
+;; (require 'init-nim)
+;; (require 'init-rust)
 (require 'init-toml)
 (require 'init-yaml)
-(require 'init-docker)
-(require 'init-terraform)
+;; (require 'init-docker)
+;; (require 'init-terraform)
 ;; (require 'init-nix)
-(maybe-require-package 'nginx-mode)
+;; (maybe-require-package 'nginx-mode)
 
 (require 'init-paredit)
 (require 'init-lisp)
-(require 'init-slime)
-(require 'init-clojure)
-(require 'init-clojure-cider)
+;; (require 'init-slime)
+;; (require 'init-clojure)
+;; (require 'init-clojure-cider)
 (require 'init-common-lisp)
 (require 'init-cc)
+(require 'init-go)
 (require 'init-jce)
-(require 'init-golang)
-(require 'init-gtags)
 
 (when *spell-check-support-enabled*
   (require 'init-spelling))
@@ -137,10 +137,10 @@
 (require 'init-ledger)
 ;; Extra packages which don't require any configuration
 
-(require-package 'sudo-edit)
-(require-package 'gnuplot)
+;; (require-package 'sudo-edit)
+;; (require-package 'gnuplot)
 (require-package 'lua-mode)
-(require-package 'htmlize)
+;; (require-package 'htmlize)
 (when *is-a-mac*
   (require-package 'osx-location))
 (unless (eq system-type 'windows-nt)
@@ -156,6 +156,8 @@
   (add-hook 'after-init-hook 'global-eldoc-mode))
 
 (require 'init-direnv)
+(require 'init-tramp)
+;; (require 'aweshell)
 
 ;;----------------------------------------------------------------------------
 ;; Allow access from emacsclient
@@ -177,15 +179,12 @@
 ;; Locales (setting them earlier in this file doesn't work in X)
 ;;----------------------------------------------------------------------------
 (require 'init-locales)
-(require 'init-tramp)
-(require 'init-leetcode)
 
 
 ;;----------------------------------------------------------------------------
 ;; Allow users to provide an optional "init-local" containing personal settings
 ;;----------------------------------------------------------------------------
 (require 'init-local nil t)
-
 
 
 (provide 'init)

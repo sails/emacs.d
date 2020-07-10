@@ -10,7 +10,7 @@
 (setq custom-safe-themes t)
 
 ;; If you don't customize it, this is the theme you get.
-;; (setq-default custom-enabled-themes '(sanityinc-tomorrow-bright))
+(setq-default custom-enabled-themes '(sanityinc-tomorrow-bright))
 
 ;; Ensure that themes will be applied even if they have not been customized
 (defun reapply-themes ()
@@ -18,10 +18,7 @@
   (dolist (theme custom-enabled-themes)
     (unless (custom-theme-p theme)
       (load-theme theme)))
-  (custom-set-variables `(custom-enabled-themes (quote ,custom-enabled-themes)))
-  ;; 取消注释的斜体设置
-  (make-face-unitalic 'font-lock-comment-face)
-  )
+  (custom-set-variables `(custom-enabled-themes (quote ,custom-enabled-themes))))
 
 (add-hook 'after-init-hook 'reapply-themes)
 
@@ -45,10 +42,10 @@
 (when (maybe-require-package 'dimmer)
   (setq-default dimmer-fraction 0.15)
   (add-hook 'after-init-hook 'dimmer-mode)
-  (after-load 'dimmer
+  (with-eval-after-load 'dimmer
     ;; TODO: file upstream as a PR
     (advice-add 'frame-set-background-mode :after (lambda (&rest args) (dimmer-process-all))))
-  (after-load 'dimmer
+  (with-eval-after-load 'dimmer
     ;; Don't dim in terminal windows. Even with 256 colours it can
     ;; lead to poor contrast.  Better would be to vary dimmer-fraction
     ;; according to frame type.

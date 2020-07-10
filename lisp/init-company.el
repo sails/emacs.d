@@ -10,11 +10,10 @@
 
 (when (maybe-require-package 'company)
   (add-hook 'after-init-hook 'global-company-mode)
-  (after-load 'company
+  (with-eval-after-load 'company
     (dolist (backend '(company-eclim company-semantic))
       (delq backend company-backends))
     (diminish 'company-mode)
-    (setq completion-ignore-case t)
     (define-key company-mode-map (kbd "M-/") 'company-complete)
     (define-key company-active-map (kbd "M-/") 'company-other-backend)
     (define-key company-active-map (kbd "C-n") 'company-select-next)
@@ -27,10 +26,8 @@
 
 ;; Suspend page-break-lines-mode while company menu is active
 ;; (see https://github.com/company-mode/company-mode/issues/416)
-(after-load 'company
-  ;; (setq company-idle-delay 0.15)
-  (setq company-idle-delay 0.15)
-  (after-load 'page-break-lines
+(with-eval-after-load 'company
+  (with-eval-after-load 'page-break-lines
     (defvar-local sanityinc/page-break-lines-on-p nil)
 
     (defun sanityinc/page-break-lines-disable (&rest ignore)
