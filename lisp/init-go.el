@@ -37,7 +37,8 @@
                                               :new-connection (lsp-tramp-connection "/data/sailsxu/go_proj/bin/gopls")
                                               :major-modes '(go-mode)
                                               :remote? t
-                                              :server-id 'go-remote)))))
+                                              :server-id 'go-remote)))
+            ))
 
 (provide 'init-go)
 ;;; init-golang.el ends here
