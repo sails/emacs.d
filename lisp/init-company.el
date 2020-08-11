@@ -29,7 +29,7 @@
 (with-eval-after-load 'company
   (with-eval-after-load 'page-break-lines
     (defvar-local sanityinc/page-break-lines-on-p nil)
-
+    (setq company-idle-delay 0)
     (defun sanityinc/page-break-lines-disable (&rest ignore)
       (when (setq sanityinc/page-break-lines-on-p (bound-and-true-p page-break-lines-mode))
         (page-break-lines-mode -1)))

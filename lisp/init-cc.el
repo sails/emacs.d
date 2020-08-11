@@ -37,15 +37,8 @@
             ;; company-mode 如果太慢执行company-diag查看backend
             (require 'company-clang)
             (require 'company-dabbrev)
-            (require-package 'company-lsp)
-            ;; (require-package 'company-tabnine)
             (set (make-local-variable 'company-backends)
-                 ;; '((company-lsp company-tabnine company-clang company-files company-keywords)
-                 '((company-lsp company-clang company-files company-keywords)
-                   (company-abbrev company-dabbrev)
-                   ;; 如果不在这最后加一个company-lsp，lsp-mode会调用add-to-list把company-lsp加到company-keywords最前面，
-                   ;; 导致company-lsp不能同其它后端在一个组里
-                   company-lsp
+                 '((company-capf company-clang company-files company-keywords)
                    )
                  )
 
@@ -82,7 +75,7 @@
 
 
             ;; lsp的自动配置过程会把flycheck重置
-            (setq lsp-auto-configure nil)
+            ;; (setq lsp-auto-configure nil)
             ;; ;; 去掉lsp检查
             ;; (setq-default flycheck-disabled-checkers '(lsp))
 
