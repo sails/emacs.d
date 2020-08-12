@@ -63,6 +63,8 @@
             (add-hook 'c-mode-hook #'lsp)
             (add-hook 'c++-mode-hook #'lsp)
             (setq lsp-enable-file-watchers nil)
+            ;; 禁用lsp默认的flycheck设置
+            (setq lsp-diagnostic-package :none)
 
             (with-eval-after-load 'lsp-mode (lsp-register-client
                                              (make-lsp-client
@@ -71,13 +73,6 @@
                                               :major-modes '(c-mode c++-mode)
                                               :remote? t
                                               :server-id 'c++-remote)))
-
-
-
-            ;; lsp的自动配置过程会把flycheck重置
-            ;; (setq lsp-auto-configure nil)
-            ;; ;; 去掉lsp检查
-            ;; (setq-default flycheck-disabled-checkers '(lsp))
 
 
             ;; 可以很方便的在头文件与cpp文件中切换
