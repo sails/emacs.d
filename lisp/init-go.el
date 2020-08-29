@@ -9,7 +9,7 @@
 (add-hook 'go-mode-hook
           (lambda ()
 
-                                        ; Use goimports instead of go-fmt
+            ;; Use goimports instead of go-fmt
             (setq gofmt-command "goimports")
             ;; goimports在tramp模式下支持不好，它对目录结构有要求,而tramp时是在
             ;; 临时目录下，所以在编辑远程文件时，不能使用goimports
