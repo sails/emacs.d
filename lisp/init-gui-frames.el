@@ -93,6 +93,20 @@
 
 (require-package 'disable-mouse)
 
+
+;; 设置窗口位置
+(defun my/set-initial-frame ()
+  (let* ((width-factor 0.50)
+         (height-factor 0.70)
+         (a-width (* (display-pixel-width) width-factor))
+         (a-height (* (display-pixel-height) height-factor))
+         (a-left (truncate (/ (- (display-pixel-width) a-width) 2)))
+         (a-top (truncate (/ (- (display-pixel-height) a-height) 2))))
+    ;; (set-frame-position (selected-frame) a-left a-top)
+    (set-frame-position (selected-frame) a-left 0)
+    (set-frame-size (selected-frame) (truncate a-width)  (truncate a-height) t)))
+(setq frame-resize-pixelwise t)
+(my/set-initial-frame)
 
 (provide 'init-gui-frames)
 ;;; init-gui-frames.el ends here
