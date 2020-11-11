@@ -1,0 +1,18 @@
+# -*- mode: snippet -*-
+# name: copyright2
+# key: copyright2
+# --
+// Copyright (C) `(format-time-string "%Y")` sails Authors.
+// All rights reserved.
+//
+// Official git repository and contact information can be found at
+// https://github.com/sails and http://www.sailsxu.com/.
+//
+// Filename: `(file-name-nondirectory buffer-file-name)`
+// Description: $2
+//
+// Author: sailsxu <sailsxu@gmail.com>
+// Created: `(format-time-string "%Y-%m-%d %H:%M:%S")`
+
+
+$0

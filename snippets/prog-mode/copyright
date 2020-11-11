@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: copyright
+# key: copyright
+# --
+/****************************************************************
+ *@file		    `(file-name-nondirectory buffer-file-name)`
+ *@brief	    $1
+ *@date		    `(format-time-string "%Y/%m/%d")`
+ *@author	    sailsxu sailsxu@tencent.com
+ *@version	    1.0
+ *@copyright    Copyright (c) `(format-time-string "%Y")` Tencent Inc. All Rights Reserved.
+ ****************************************************************/
+
+$0

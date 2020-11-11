@@ -6,14 +6,13 @@
 
 (when (fboundp 'electric-pair-mode)
   (add-hook 'after-init-hook 'electric-pair-mode))
-(when (eval-when-compile (version< "24.4" emacs-version))
-  (add-hook 'after-init-hook 'electric-indent-mode))
+(add-hook 'after-init-hook 'electric-indent-mode)
 
 (maybe-require-package 'list-unicode-display)
 
-;;----------------------------------------------------------------------------
-;; Some basic preferences
-;;----------------------------------------------------------------------------
+
+;;; Some basic preferences
+
 (setq-default
  blink-cursor-interval 0.4
  bookmark-default-file (expand-file-name ".bookmarks.el" user-emacs-directory)
@@ -46,6 +45,9 @@
 
 
 ;; Huge files
+
+(when (fboundp 'so-long-enable)
+  (add-hook 'after-init-hook 'so-long-enable))
 
 (require-package 'vlf)
 
@@ -103,6 +105,14 @@
     (advice-add 'goto-line-preview :around #'sanityinc/with-display-line-numbers)))
 
 
+
+(when (boundp 'display-fill-column-indicator)
+  (setq-default indicate-buffer-boundaries 'left)
+  (setq-default display-fill-column-indicator-character ?\u254e)
+  (add-hook 'prog-mode-hook 'display-fill-column-indicator-mode))
+
+
+
 (when (require-package 'rainbow-delimiters)
   (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
 
@@ -117,9 +127,9 @@
     (define-key symbol-overlay-mode-map (kbd "M-n") 'symbol-overlay-jump-next)
     (define-key symbol-overlay-mode-map (kbd "M-p") 'symbol-overlay-jump-prev)))
 
-;;----------------------------------------------------------------------------
-;; Zap *up* to char is a handy pair for zap-to-char
-;;----------------------------------------------------------------------------
+
+;;; Zap *up* to char is a handy pair for zap-to-char
+
 (autoload 'zap-up-to-char "misc" "Kill up to, but not including ARGth occurrence of CHAR.")
 (global-set-key (kbd "M-Z") 'zap-up-to-char)
 
@@ -136,41 +146,22 @@
   (add-to-list 'page-break-lines-modes 'browse-kill-ring-mode))
 
 
-;;----------------------------------------------------------------------------
 ;; Don't disable narrowing commands
-;;----------------------------------------------------------------------------
 (put 'narrow-to-region 'disabled nil)
 (put 'narrow-to-page 'disabled nil)
 (put 'narrow-to-defun 'disabled nil)
-
-;;----------------------------------------------------------------------------
-;; Show matching parens
-;;----------------------------------------------------------------------------
-(add-hook 'after-init-hook 'show-paren-mode)
-
-;;----------------------------------------------------------------------------
-;; Expand region
-;;----------------------------------------------------------------------------
-(require-package 'expand-region)
-(global-set-key (kbd "C-=") 'er/expand-region)
-
-
-;;----------------------------------------------------------------------------
 ;; Don't disable case-change functions
-;;----------------------------------------------------------------------------
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
 
 
-;;----------------------------------------------------------------------------
-;; Rectangle selections, and overwrite text when the selection is active
-;;----------------------------------------------------------------------------
-(cua-selection-mode t)                  ; for rectangles, CUA is nice
+;; Show matching parens
+(add-hook 'after-init-hook 'show-paren-mode)
 
 
-;;----------------------------------------------------------------------------
-;; Handy key bindings
-;;----------------------------------------------------------------------------
+
+;;; Handy key bindings
+
 (global-set-key (kbd "C-.") 'set-mark-command)
 (global-set-key (kbd "C-x C-.") 'pop-global-mark)
 
@@ -183,18 +174,10 @@
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-+") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
-;; From active region to multiple cursors:
-(global-set-key (kbd "C-c m r") 'set-rectangular-region-anchor)
-(global-set-key (kbd "C-c m c") 'mc/edit-lines)
-(global-set-key (kbd "C-c m e") 'mc/edit-ends-of-lines)
-(global-set-key (kbd "C-c m a") 'mc/edit-beginnings-of-lines)
-
 
 ;; Train myself to use M-f and M-b instead
 (global-unset-key [M-left])
 (global-unset-key [M-right])
-
-
 
 (defun kill-back-to-indentation ()
   "Kill from point back to the first non-whitespace character on the line."
@@ -206,19 +189,20 @@
 (global-set-key (kbd "C-M-<backspace>") 'kill-back-to-indentation)
 
 
-;;----------------------------------------------------------------------------
-;; Page break lines
-;;----------------------------------------------------------------------------
+
+;;; Page break lines
+
 (when (maybe-require-package 'page-break-lines)
   (add-hook 'after-init-hook 'global-page-break-lines-mode)
   (with-eval-after-load 'page-break-lines
     (diminish 'page-break-lines-mode)))
 
-;;----------------------------------------------------------------------------
+
+
 ;; Shift lines up and down with M-up and M-down. When paredit is enabled,
 ;; it will use those keybindings. For this reason, you might prefer to
 ;; use M-S-up and M-S-down, which will work even in lisp modes.
-;;----------------------------------------------------------------------------
+
 (require-package 'move-dup)
 (global-set-key [M-up] 'md-move-lines-up)
 (global-set-key [M-down] 'md-move-lines-down)
@@ -228,9 +212,9 @@
 (global-set-key (kbd "C-c d") 'md-duplicate-down)
 (global-set-key (kbd "C-c u") 'md-duplicate-up)
 
-;;----------------------------------------------------------------------------
-;; Fix backward-up-list to understand quotes, see http://bit.ly/h7mdIL
-;;----------------------------------------------------------------------------
+
+;;; Fix backward-up-list to understand quotes, see http://bit.ly/h7mdIL
+
 (defun sanityinc/backward-up-sexp (arg)
   "Jump up to the start of the ARG'th enclosing sexp."
   (interactive "p")
@@ -243,38 +227,12 @@
 (global-set-key [remap backward-up-list] 'sanityinc/backward-up-sexp) ; C-M-u, C-M-up
 
 
-;;----------------------------------------------------------------------------
-;; Cut/copy the current line if no region is active
-;;----------------------------------------------------------------------------
+
+;;; Cut/copy the current line if no region is active
 (require-package 'whole-line-or-region)
 (add-hook 'after-init-hook 'whole-line-or-region-global-mode)
 (with-eval-after-load 'whole-line-or-region
   (diminish 'whole-line-or-region-local-mode))
-
-
-;; Some local minor modes clash with CUA rectangle selection
-
-(defvar-local sanityinc/suspended-modes-during-cua-rect nil
-  "Modes that should be re-activated when cua-rect selection is done.")
-
-(eval-after-load 'cua-rect
-  (advice-add 'cua--deactivate-rectangle :after
-              (lambda (&rest _)
-                (dolist (m sanityinc/suspended-modes-during-cua-rect)
-                  (funcall m 1)
-                  (setq sanityinc/suspended-modes-during-cua-rect nil)))))
-
-(defun sanityinc/suspend-mode-during-cua-rect-selection (mode-name)
-  "Add an advice to suspend `MODE-NAME' while selecting a CUA rectangle."
-  (eval-after-load 'cua-rect
-    (advice-add 'cua--activate-rectangle :after
-                (lambda (&rest _)
-                  (when (bound-and-true-p mode-name)
-                    (add-to-list 'sanityinc/suspended-modes-during-cua-rect mode-name)
-                    (funcall mode-name 0))))))
-
-(sanityinc/suspend-mode-during-cua-rect-selection 'whole-line-or-region-local-mode)
-
 
 
 
@@ -308,9 +266,12 @@ With arg N, insert N newlines."
 (global-set-key (kbd "C-o") 'sanityinc/open-line-with-reindent)
 
 
-;;----------------------------------------------------------------------------
+
+;; M-^ is inconvenient, so also bind M-j
+(global-set-key (kbd "M-j") 'join-line)
+
+
 ;; Random line sorting
-;;----------------------------------------------------------------------------
 (defun sanityinc/sort-lines-random (beg end)
   "Sort lines in region from BEG to END randomly."
   (interactive "r")
@@ -322,7 +283,6 @@ With arg N, insert N newlines."
           ((inhibit-field-text-motion t))
         (sort-subr nil 'forward-line 'end-of-line nil nil
                    (lambda (s1 s2) (eq (random 2) 0)))))))
-
 
 
 
