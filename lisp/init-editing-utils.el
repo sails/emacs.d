@@ -106,10 +106,11 @@
 
 
 
-(when (boundp 'display-fill-column-indicator)
-  (setq-default indicate-buffer-boundaries 'left)
-  (setq-default display-fill-column-indicator-character ?\u254e)
-  (add-hook 'prog-mode-hook 'display-fill-column-indicator-mode))
+;; 增加分割竖线
+;; (when (boundp 'display-fill-column-indicator)
+;;   (setq-default indicate-buffer-boundaries 'left)
+;;   (setq-default display-fill-column-indicator-character ?\u254e)
+;;   (add-hook 'prog-mode-hook 'display-fill-column-indicator-mode))
 
 
 
