@@ -28,7 +28,11 @@
             (setq flycheck-clang-language-standard "c++11")
             (flycheck-add-next-checker 'c/c++-cppcheck
                                        '(warning . c/c++-googlelint))
-            (flycheck-select-checker 'c/c++-cppcheck)
+            (unless (derived-mode-p 'protobuf-mode)
+              ;; not in protobuf
+              (flycheck-select-checker 'c/c++-cppcheck)
+              )
+
             (setq flycheck-cppcheck-checks (quote ("style" "all")))
             (setq flycheck-googlelint-filter "-legal/copyright,-build/include_subdir")
             (setq flycheck-googlelint-linelength "100")
