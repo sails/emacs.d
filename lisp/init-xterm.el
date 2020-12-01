@@ -15,21 +15,18 @@
 
 (add-hook 'after-make-console-frame-hooks 'sanityinc/console-frame-setup)
 
-(unless (display-graphic-p)
-  (progn
-    (require 'xterm-title)
-    (xterm-title-mode 1)
-    (defun xterm-title-update ()
-      (interactive)
-      (send-string-to-terminal (concat "\033]1; " (buffer-name) "\007"))
-      (if buffer-file-name
-          (send-string-to-terminal (concat "\033]2; " (buffer-file-name) "\007"))
-        (send-string-to-terminal (concat "\033]2; " (buffer-name) "\007"))))
+(defun xterm-title-update ()
+  (unless (active-minibuffer-window)
+    (send-string-to-terminal (concat "\033]1;" (buffer-name) "\007"))
+    (if buffer-file-name
+        (send-string-to-terminal (concat "\033]2;" (abbreviate-file-name (buffer-file-name)) "\007"))
+      (send-string-to-terminal (concat "\033]2;" (buffer-name) "\007")))))
 
-    (add-hook 'post-command-hook 'xterm-title-update)
-    )
-  )
+(defun xterm-title-update--register ()
+  (add-hook 'after-init-hook 'xterm-title-update)
+  (add-hook 'post-command-hook 'xterm-title-update))
 
+(add-hook 'terminal-init-xterm-hook 'xterm-title-update--register)
 
 
 (provide 'init-xterm)
