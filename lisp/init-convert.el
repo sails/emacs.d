@@ -24,7 +24,15 @@
           )
         )
     (progn
-      (format-time-string "%s" (date-to-time time)))
+      (if (string-equal time "now")
+          (progn
+            (format-time-string "%s")
+            )
+        (progn
+          (format-time-string "%s" (date-to-time time))
+          )
+        )
+      )
     ))
 
 (defun convert:time-region (start end)
@@ -62,8 +70,6 @@
   (interactive "r")
   (convert:replace-region start end 'md5)
   )
-
-;;
 
 (provide 'init-convert)
 
