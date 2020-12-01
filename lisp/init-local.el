@@ -5,7 +5,16 @@
 ;; (set-fontset-font t 'han (font-spec :family "Heiti SC" :size 14))
 ;; (set-default-font "Monaco 13")
 ;; (set-face-attribute 'default nil :font "Monaco-13")
-(set-face-attribute 'default nil :font "Fira Code-12")
+
+(if (display-graphic-p)
+    (progn
+      ;; if graphic
+      (set-face-attribute 'default nil :font "Fira Code-12")
+      )
+  ;; else (optional)
+  ;; 直接设置终端工具的字体即可
+  )
+
 
 ;; Increase the amount of data which Emacs reads from the process
 ;; Considering that the some of the language server responses are in 800k - 3M range.
@@ -78,10 +87,10 @@
   )
 
 ;; eshell-toggle
-(require-package 'eshell-toggle)
-(require 'eshell-toggle)
-(global-set-key "\M-j" 'eshell-toggle)
-;; vterm
+;; (require-package 'eshell-toggle)
+;; (require 'eshell-toggle)
+;; (global-set-key "\M-j" 'eshell-toggle)
+;; ;; vterm
 (require-package 'vterm)
 (require-package 'vterm-toggle)
 ;; (global-set-key "\M-j" 'vterm-toggle-cd)
@@ -121,6 +130,7 @@
   ;; else (optional)
   (global-set-key (kbd "C-c =") 'hs-show-block)
   (global-set-key (kbd "C-c -") 'hs-hide-block)
+
   )
 
 
