@@ -25,7 +25,7 @@
             ;; flycheck 设置
             (flycheck-mode 1)
             (require 'flycheck-google-cpplint)
-            (setq flycheck-clang-language-standard "c++11")
+            (setq flycheck-clang-language-standard "c++17")
             (flycheck-add-next-checker 'c/c++-cppcheck
                                        '(warning . c/c++-googlelint))
             (unless (derived-mode-p 'protobuf-mode)
@@ -92,9 +92,9 @@
 
 
             (require-package 'quickrun)
-            (quickrun-add-command "c++/c11"
+            (quickrun-add-command "c++/c17"
               '((:command . "g++")
-                (:exec    . ("%c -std=c++11 %o -o %e %s"
+                (:exec    . ("%c -std=c++17 %o -o %e %s"
                              "%e %a"))
                 (:remove  . ("%e")))
               :default "c++")
