@@ -25,6 +25,7 @@
             ;; flycheck 设置
             (flycheck-mode 1)
             (require 'flycheck-google-cpplint)
+            (setq flycheck-gcc-language-standard "c++17")
             (setq flycheck-clang-language-standard "c++17")
             (flycheck-add-next-checker 'c/c++-cppcheck
                                        '(warning . c/c++-googlelint))
@@ -98,8 +99,6 @@
                              "%e %a"))
                 (:remove  . ("%e")))
               :default "c++")
-            ;; (setq flycheck-gcc-language-standard "c++11")
-            ;; (setq flycheck-clang-language-standard "c++11")
 
             ))
 
