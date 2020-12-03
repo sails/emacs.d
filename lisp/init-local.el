@@ -172,6 +172,7 @@
     (progn
       ;; if graphic
       (require-package 'fira-code-mode)
+      (setq fira-code-mode-disabled-ligatures '("[]" "#{" "#(" "#_" "#_(" "x"))
       (add-hook 'prog-mode-hook 'fira-code-mode)
       )
   ;; else (optional)
