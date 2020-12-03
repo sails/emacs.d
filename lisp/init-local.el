@@ -99,7 +99,17 @@
           (lambda ()
             (define-key vterm-mode-map (kbd "M-j")        #'vterm-toggle-cd)
             ;; cd到当前buffer的目录
-            (define-key vterm-mode-map (kbd "M-RET")   #'vterm-toggle-insert-cd)
+            (if (display-graphic-p)
+                (progn
+                  ;; if graphic
+
+                  )
+              ;; else (optional)
+              (define-key vterm-mode-map (kbd "C-c j")   #'vterm-toggle-insert-cd)
+              )
+
+
+
             (define-key vterm-mode-map (kbd "C-c C-y") 'vterm-yank)
             ;; 在buffer底部显示
             (setq vterm-toggle-fullscreen-p nil)
