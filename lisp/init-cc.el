@@ -60,7 +60,7 @@
               (define-key helm-gtags-mode-map (kbd "M-s") 'helm-gtags-find-symbol)
               (define-key helm-gtags-mode-map (kbd "M-,") 'helm-gtags-pop-stack))
 
-            ;; ccls比clangd对lsp支持更完善
+            ;; ccls比clangd对lsp支持更完善(比如lsp-find-definition,lsp-find-references,pop-tag-mark)
             (require-package 'ccls)
             (require 'ccls)
             (require-package 'lsp-mode)
