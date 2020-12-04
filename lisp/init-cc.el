@@ -60,25 +60,17 @@
               (define-key helm-gtags-mode-map (kbd "M-s") 'helm-gtags-find-symbol)
               (define-key helm-gtags-mode-map (kbd "M-,") 'helm-gtags-pop-stack))
 
+            ;; ccls比clangd对lsp支持更完善
             (require-package 'ccls)
             (require 'ccls)
-            (setq ccls-executable "/usr/local/bin/ccls")
             (require-package 'lsp-mode)
+            (require-package 'lsp-ui)
 
             (add-hook 'c-mode-hook #'lsp)
             (add-hook 'c++-mode-hook #'lsp)
             (setq lsp-enable-file-watchers nil)
             ;; 禁用lsp默认的flycheck设置
             (setq lsp-diagnostic-package :none)
-
-            (with-eval-after-load 'lsp-mode (lsp-register-client
-                                             (make-lsp-client
-                                              :new-connection (lsp-tramp-connection "/usr/local/bin/clangd")
-                                              ;; :new-connection (lsp-tramp-connection "/usr/local/bin/ccls")
-                                              :major-modes '(c-mode c++-mode)
-                                              :remote? t
-                                              :server-id 'c++-remote)))
-
 
             ;; 可以很方便的在头文件与cpp文件中切换
             (setq cc-other-file-alist
