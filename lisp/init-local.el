@@ -96,38 +96,37 @@
   )
 
 ;; vterm
-;; (require-package 'vterm)
-;; (require-package 'vterm-toggle)
-;; ;; (global-set-key "\M-j" 'vterm-toggle-cd)
+(require-package 'vterm)
+(require-package 'vterm-toggle)
 ;; (global-set-key (kbd "M-j") 'vterm-toggle-cd)
-;; (add-hook 'vterm-mode-hook
-;;           (lambda ()
-;;             (define-key vterm-mode-map (kbd "M-j")        #'vterm-toggle-cd)
-;;             ;; cd到当前buffer的目录
-;;             (if (display-graphic-p)
-;;                 (progn
-;;                   ;; if graphic
+(add-hook 'vterm-mode-hook
+          (lambda ()
+            (define-key vterm-mode-map (kbd "M-j")        #'vterm-toggle-cd)
+            ;; cd到当前buffer的目录
+            (if (display-graphic-p)
+                (progn
+                  ;; if graphic
 
-;;                   )
-;;               ;; else (optional)
-;;               (define-key vterm-mode-map (kbd "C-c j")   #'vterm-toggle-insert-cd)
-;;               )
+                  )
+              ;; else (optional)
+              (define-key vterm-mode-map (kbd "C-c j")   #'vterm-toggle-insert-cd)
+              )
 
 
 
-;;             (define-key vterm-mode-map (kbd "C-c C-y") 'vterm-yank)
-;;             ;; 在buffer底部显示
-;;             (setq vterm-toggle-fullscreen-p nil)
-;;             (add-to-list 'display-buffer-alist
-;;                          '((lambda(bufname _) (with-current-buffer bufname (equal major-mode 'vterm-mode)))
-;;                            (display-buffer-reuse-window display-buffer-at-bottom)
-;;                            ;;(display-buffer-reuse-window display-buffer-in-direction)
-;;                            ;;display-buffer-in-direction/direction/dedicated is added in emacs27
-;;                            ;;(direction . bottom)
-;;                            ;;(dedicated . t) ;dedicated is supported in emacs27
-;;                            (reusable-frames . visible)
-;;                            (window-height . 0.3)))
-;;             ))
+            (define-key vterm-mode-map (kbd "C-c C-y") 'vterm-yank)
+            ;; 在buffer底部显示
+            (setq vterm-toggle-fullscreen-p nil)
+            (add-to-list 'display-buffer-alist
+                         '((lambda(bufname _) (with-current-buffer bufname (equal major-mode 'vterm-mode)))
+                           (display-buffer-reuse-window display-buffer-at-bottom)
+                           ;;(display-buffer-reuse-window display-buffer-in-direction)
+                           ;;display-buffer-in-direction/direction/dedicated is added in emacs27
+                           ;;(direction . bottom)
+                           ;;(dedicated . t) ;dedicated is supported in emacs27
+                           (reusable-frames . visible)
+                           (window-height . 0.3)))
+            ))
 
 
 
