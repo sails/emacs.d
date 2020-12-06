@@ -126,6 +126,7 @@
 (require 'init-cc)
 (require 'init-go)
 (require 'init-jce)
+(require 'init-shell)
 
 (when *spell-check-support-enabled*
   (require 'init-spelling))
