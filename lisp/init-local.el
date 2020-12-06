@@ -105,9 +105,6 @@
 (require-package 'helm-ag)
 (global-set-key (kbd "C-x c i") 'helm-semantic-or-imenu)
 
-
-(require 'init-convert)
-
 ;; terminal copy-paste(copy from terminal-emacs to system (clip)board)
 ;; when paste into emacs use command+v instead of ctrl+y
 (when (not (display-graphic-p))
