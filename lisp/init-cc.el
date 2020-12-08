@@ -61,6 +61,8 @@
               (define-key helm-gtags-mode-map (kbd "M-,") 'helm-gtags-pop-stack))
 
             ;; ccls比clangd对lsp支持更完善(比如lsp-find-definition,lsp-find-references,pop-tag-mark)
+            ;; 不管是ccls还是clangd，如果compile_commands.json很大(10M)，首次分析cpu会占用特别高，并且持
+            ;; 续几分钟，所以最好是用daemon模式运行emacs
             (require-package 'ccls)
             (require 'ccls)
             (require-package 'lsp-mode)
