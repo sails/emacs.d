@@ -62,9 +62,12 @@
 
             ;; ccls比clangd对lsp支持更完善(比如lsp-find-definition,lsp-find-references,pop-tag-mark)
             ;; 不管是ccls还是clangd，如果compile_commands.json很大(10M)，首次分析cpu会占用特别高，并且持
-            ;; 续几分钟，所以最好是用daemon模式运行emacs
+            ;; 续几分钟，所以最好是用daemon模式运行emacs。这里通过限制ccls的threads来限制cpu核数使用
             (require-package 'ccls)
             (require 'ccls)
+            (setq ccls-initialization-options
+                  '(
+                    :index (:threads 4)))
             (require-package 'lsp-mode)
             (require-package 'lsp-ui)
 
