@@ -23,7 +23,7 @@
             (google-make-newline-indent)
 
             ;; flycheck 设置
-            (flycheck-mode 1)
+            (flycheck-mode 0)
             (require 'flycheck-google-cpplint)
             (setq flycheck-gcc-language-standard "c++17")
             (setq flycheck-clang-language-standard "c++17")
@@ -54,6 +54,7 @@
             (add-hook 'c++-mode-hook 'helm-gtags-mode)
             (add-hook 'asm-mode-hook 'helm-gtags-mode)
             (add-hook 'jce-mode-hook 'helm-gtags-mode)
+            (add-hook 'protobuf-mode-hook 'helm-gtags-mode)
             (with-eval-after-load 'helm-gtags
               (define-key helm-gtags-mode-map (kbd "M-t") 'helm-gtags-find-tag)
               (define-key helm-gtags-mode-map (kbd "M-.") 'helm-gtags-find-tag-from-here)
@@ -63,19 +64,19 @@
             ;; ccls比clangd对lsp支持更完善(比如lsp-find-definition,lsp-find-references,pop-tag-mark)
             ;; 不管是ccls还是clangd，如果compile_commands.json很大(10M)，首次分析cpu会占用特别高，并且持
             ;; 续几分钟，所以最好是用daemon模式运行emacs。这里通过限制ccls的threads来限制cpu核数使用
-            (require-package 'ccls)
-            (require 'ccls)
-            (setq ccls-initialization-options
-                  '(
-                    :index (:threads 4)))
-            (require-package 'lsp-mode)
-            (require-package 'lsp-ui)
+            ;; (require-package 'ccls)
+            ;; (require 'ccls)
+            ;; (setq ccls-initialization-options
+            ;;       '(
+            ;;         :index (:threads 4)))
+            ;; (require-package 'lsp-mode)
+            ;; ;; (require-package 'lsp-ui)
 
-            (add-hook 'c-mode-hook #'lsp)
-            (add-hook 'c++-mode-hook #'lsp)
-            (setq lsp-enable-file-watchers nil)
-            ;; 禁用lsp默认的flycheck设置
-            (setq lsp-diagnostic-package :none)
+            ;; (add-hook 'c-mode-hook #'lsp)
+            ;; (add-hook 'c++-mode-hook #'lsp)
+            ;; (setq lsp-enable-file-watchers nil)
+            ;; ;; 禁用lsp默认的flycheck设置
+            ;; (setq lsp-diagnostic-package :none)
 
             ;; 可以很方便的在头文件与cpp文件中切换
             (setq cc-other-file-alist
