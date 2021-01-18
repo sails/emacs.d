@@ -137,7 +137,10 @@
   ;; else (optional)
   )
 
+;; (setq ivy-extra-directories '("."))
 
+;; protobuf
+(require-package 'protobuf-mode)
 
 
 (provide 'init-local)
