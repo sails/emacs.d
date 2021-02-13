@@ -40,10 +40,9 @@
 
             ;; company
             ;; company-mode 如果太慢执行company-diag查看backend
-            (require 'company-clang)
             (require 'company-dabbrev)
             (set (make-local-variable 'company-backends)
-                 '((company-capf company-clang company-files company-keywords)
+                 '((company-capf company-gtags company-files company-keywords)
                    )
                  )
 
