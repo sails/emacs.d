@@ -118,7 +118,7 @@
 
 
 ;; ivy高度，默认是10:输入占1行,内容占9行
-(setq ivy-height 15)
+;; (setq ivy-height 15)
 
 ;; rg搜索
 (require-package 'deadgrep)
