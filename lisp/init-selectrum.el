@@ -7,6 +7,7 @@
   (add-hook 'after-init-hook 'selectrum-mode)
   ;; selectrum默认展示10个候选内容
   (setq selectrum-max-window-height 15)
+  (setq selectrum-fix-vertical-window-height t)
   (when (maybe-require-package 'selectrum-prescient)
     (require 'prescient)
     (prescient-persist-mode 1)
