@@ -11,6 +11,10 @@
 ;;     (progn
 ;;       ;; if graphic
 ;;       (set-face-attribute 'default nil :font "Fira Code-12")
+;;       ;; 要先安装FiraCode-Regular-Symbol和FireCode字体
+;;       (require-package 'fira-code-mode)
+;;       (setq fira-code-mode-disabled-ligatures '("[]" "#{" "#(" "#_" "#_(" "x"))
+;;       (add-hook 'prog-mode-hook 'fira-code-mode)
 ;;       )
 ;;   ;; else (optional)
 ;;   ;; 直接设置终端工具的字体即可
@@ -126,17 +130,6 @@
 
 ;; clang-format
 (require-package 'clang-format)
-
-;; 要先安装FiraCode-Regular-Symbol和FireCode字体
-(if (display-graphic-p)
-    (progn
-      ;; if graphic
-      (require-package 'fira-code-mode)
-      (setq fira-code-mode-disabled-ligatures '("[]" "#{" "#(" "#_" "#_(" "x"))
-      (add-hook 'prog-mode-hook 'fira-code-mode)
-      )
-  ;; else (optional)
-  )
 
 ;; (setq ivy-extra-directories '("."))
 
