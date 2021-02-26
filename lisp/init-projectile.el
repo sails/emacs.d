@@ -4,6 +4,7 @@
 
 (when (maybe-require-package 'projectile)
   (add-hook 'after-init-hook 'projectile-mode)
+  (setq projectile-enable-caching t)
 
   ;; Shorter modeline
   (setq-default projectile-mode-line-prefix " Proj")
