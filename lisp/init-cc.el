@@ -38,13 +38,13 @@
             (setq flycheck-googlelint-filter "-legal/copyright,-build/include_subdir")
             (setq flycheck-googlelint-linelength "100")
 
-            ;; company
-            ;; company-mode 如果太慢执行company-diag查看backend
-            (require 'company-dabbrev)
-            (set (make-local-variable 'company-backends)
-                 '((company-capf company-files company-keywords company-gtags)
-                   )
-                 )
+            ;; ;; company
+            ;; ;; company-mode 如果太慢执行company-diag查看backend
+            ;; (require 'company-dabbrev)
+            ;; (set (make-local-variable 'company-backends)
+            ;;      '((company-capf company-dabbrev company-files company-keywords company-gtags)
+            ;;        )
+            ;;      )
 
             ;; helm-gtags
             (require-package 'helm-gtags)
@@ -63,19 +63,34 @@
             ;; ccls比clangd对lsp支持更完善(比如lsp-find-definition,lsp-find-references,pop-tag-mark)
             ;; 不管是ccls还是clangd，如果compile_commands.json很大(10M)，首次分析cpu会占用特别高，并且持
             ;; 续几分钟，所以最好是用daemon模式运行emacs。这里通过限制ccls的threads来限制cpu核数使用
-            ;; (require-package 'ccls)
-            ;; (require 'ccls)
-            ;; (setq ccls-initialization-options
-            ;;       '(
-            ;;         :index (:threads 4)))
-            ;; (require-package 'lsp-mode)
-            ;; ;; (require-package 'lsp-ui)
+            (require-package 'ccls)
+            (require 'ccls)
+            (setq ccls-initialization-options
+                  '(
+                    :index (:threads 3)
+                    ))
+            (setq ccls-initialization-options
+                  (append ccls-initialization-options
+                          `(:clang ,(list :extraArgs ["-isystem/Library/Developer/CommandLineTools/usr/include/c++/v1"
+                                                      "-isystem/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include"
+                                                      "-isystem/Library/Developer/CommandLineTools/usr/lib/clang/12.0.0/include"
+                                                      "-isystem/Library/Developer/CommandLineTools/usr/include"
+                                                      "-isystem/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks"
+                                                      "-isystem/usr/local/include"]
+                                          ))))
+            (require-package 'lsp-mode)
+            (add-hook 'lsp-mode-hook (lambda ())
+                      ;; 顶部目录、文件、方法breadcrumb
+                      (setq lsp-headerline-breadcrumb-enable nil)
+                      )
 
-            ;; (add-hook 'c-mode-hook #'lsp)
-            ;; (add-hook 'c++-mode-hook #'lsp)
-            ;; (setq lsp-enable-file-watchers nil)
-            ;; ;; 禁用lsp默认的flycheck设置
-            ;; (setq lsp-diagnostic-package :none)
+            ;; (require-package 'lsp-ui)
+
+            (add-hook 'c-mode-hook #'lsp)
+            (add-hook 'c++-mode-hook #'lsp)
+            (setq lsp-enable-file-watchers nil)
+            ;; 禁用lsp默认的flycheck设置
+            (setq lsp-diagnostic-package :none)
 
             ;; 可以很方便的在头文件与cpp文件中切换
             (setq cc-other-file-alist
@@ -95,9 +110,7 @@
                 (:exec    . ("%c -std=c++17 %o -o %e %s"
                              "%e %a"))
                 (:remove  . ("%e")))
-              :default "c++")
-
-            ))
+              :default "c++")))
 
 
 (provide 'init-cc)

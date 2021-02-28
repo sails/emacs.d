@@ -5,7 +5,7 @@
 ;; (set-fontset-font t 'han (font-spec :family "Heiti SC" :size 14))
 ;; (set-default-font "Monaco 13")
 ;; (set-face-attribute 'default nil :font "Monaco-12")
-(set-face-attribute 'default nil :font "Menlo-12")
+;; (set-face-attribute 'default nil :font "Menlo-12")
 
 ;; (if (display-graphic-p)
 ;;     (progn
