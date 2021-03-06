@@ -81,13 +81,13 @@
 (require 'init-vc)
 (require 'init-darcs)
 (require 'init-git)
-(require 'init-github)
+;; (require 'init-github)
 
 (require 'init-projectile)
 
-(require 'init-compile)
+;; (require 'init-compile)
 (require 'init-crontab)
-(require 'init-textile)
+;; (require 'init-textile)
 (require 'init-markdown)
 ;; (require 'init-csv)
 ;; (require 'init-erlang)
@@ -112,8 +112,8 @@
 ;; (require 'init-nim)
 ;; (require 'init-rust)
 
-(require 'init-toml)
-(require 'init-yaml)
+;; (require 'init-toml)
+;; (require 'init-yaml)
 ;; (require 'init-docker)
 ;; (require 'init-terraform)
 ;; (require 'init-nix)
@@ -137,7 +137,7 @@
 (require 'init-misc)
 
 (require 'init-folding)
-(require 'init-dash)
+;; (require 'init-dash)
 
 ;;(require 'init-twitter)
 ;; (require 'init-mu)
@@ -146,14 +146,14 @@
 
 ;; (require-package 'sudo-edit)
 ;; (require-package 'gnuplot)
-(require-package 'lua-mode)
+;; (require-package 'lua-mode)
 ;; (require-package 'htmlize)
 (when *is-a-mac*
   (require-package 'osx-location))
 (unless (eq system-type 'windows-nt)
   (maybe-require-package 'daemons))
-(maybe-require-package 'dotenv-mode)
-(maybe-require-package 'shfmt)
+;; (maybe-require-package 'dotenv-mode)
+;; (maybe-require-package 'shfmt)
 
 (when (maybe-require-package 'uptimes)
   (setq-default uptimes-keep-count 200)
@@ -162,18 +162,18 @@
 (when (fboundp 'global-eldoc-mode)
   (add-hook 'after-init-hook 'global-eldoc-mode))
 
-(require 'init-direnv)
-(require 'init-tramp)
+;; (require 'init-direnv)
+;; (require 'init-tramp)
 ;; (require 'aweshell)
 
 ;;----------------------------------------------------------------------------
 ;; Allow access from emacsclient
 ;;----------------------------------------------------------------------------
-(add-hook 'after-init-hook
-          (lambda ()
-            (require 'server)
-            (unless (server-running-p)
-              (server-start))))
+;; (add-hook 'after-init-hook
+;;           (lambda ()
+;;             (require 'server)
+;;             (unless (server-running-p)
+;;               (server-start))))
 
 ;;----------------------------------------------------------------------------
 ;; Variables configured via the interactive 'customize' interface
