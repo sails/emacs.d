@@ -67,7 +67,7 @@
             (require 'ccls)
             (setq ccls-initialization-options
                   '(
-                    :index (:threads 3)
+                    :index (:threads 1)
                     ))
             (setq ccls-initialization-options
                   (append ccls-initialization-options

@@ -71,6 +71,9 @@
       '((:eval (if (buffer-file-name)
                    (abbreviate-file-name (buffer-file-name))
                  "%b"))))
+;; 隐藏titlebar图标
+(setq ns-use-proxy-icon nil)
+
 
 ;; Non-zero values for `line-spacing' can mess up ansi-term and co,
 ;; so we zero it explicitly in those cases.

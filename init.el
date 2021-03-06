@@ -40,6 +40,8 @@
 (require 'init-elpa)      ;; Machinery for installing required packages
 (require 'init-exec-path) ;; Set up $PATH
 
+(setq comp-speed 3)
+
 ;;----------------------------------------------------------------------------
 ;; Allow users to provide an optional "init-preload-local.el"
 ;;----------------------------------------------------------------------------
@@ -98,7 +100,7 @@
 ;; (require 'init-haml)
 ;; (require 'init-http)
 (require 'init-python)
-(require 'init-haskell)
+;; (require 'init-haskell)
 ;; (require 'init-elm)
 ;; (require 'init-purescript)
 ;; (require 'init-ruby)
@@ -139,7 +141,7 @@
 
 ;;(require 'init-twitter)
 ;; (require 'init-mu)
-(require 'init-ledger)
+;; (require 'init-ledger)
 ;; Extra packages which don't require any configuration
 
 ;; (require-package 'sudo-edit)
