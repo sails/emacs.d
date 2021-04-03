@@ -12,6 +12,8 @@
 
 (setenv "LIBRARY_PATH" "/usr/local/opt/gcc/lib/gcc/10:/usr/local/opt/gcc/lib/gcc/10/gcc/x86_64-apple-darwin20/10.2.0")
 
+;; (setq url-proxy-services '(("http" . "127.0.0.1:12759")))
+;; (setq url-proxy-services '(("https" . "127.0.0.1:12759")))
 ;; So we can detect this having been loaded
 (provide 'early-init)
 

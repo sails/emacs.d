@@ -45,6 +45,12 @@
   (setq custom-enabled-themes '(doom-vibrant))
   (reapply-themes))
 
+(defun doom-light ()
+  "Activate a doom color theme."
+  (interactive)
+  (setq custom-enabled-themes '(doom-one-light))
+  (reapply-themes))
+
 
 (when (maybe-require-package 'dimmer)
   (setq-default dimmer-fraction 0.15)

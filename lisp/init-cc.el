@@ -65,9 +65,13 @@
             ;; 续几分钟，所以最好是用daemon模式运行emacs。这里通过限制ccls的threads来限制cpu核数使用
             (require-package 'ccls)
             (require 'ccls)
+            ;; (setq ccls-initialization-options
+            ;;       '(
+            ;;         :index (:threads 1 :initialBlacklist [".*"] :initialWhitelist ["wework/wwlib/.*" "qqmail/wwspam.*" "wework/wwspam.*"])
+            ;;         ))
             (setq ccls-initialization-options
                   '(
-                    :index (:threads 1)
+                    :index (:threads 1 :initialBlacklist [".*"] :initialWhitelist ["qqmail/wwspam.*" "wework/wwspam.*"])
                     ))
             (setq ccls-initialization-options
                   (append ccls-initialization-options
@@ -82,6 +86,7 @@
             (add-hook 'lsp-mode-hook (lambda ())
                       ;; 顶部目录、文件、方法breadcrumb
                       (setq lsp-headerline-breadcrumb-enable nil)
+                      (setq lsp-modeline-diagnostics-enable nil)
                       )
 
             ;; (require-package 'lsp-ui)
@@ -94,9 +99,29 @@
 
             ;; 可以很方便的在头文件与cpp文件中切换
             (setq cc-other-file-alist
-                  '(("\\.c"   (".h"))
-                    ("\\.cpp"   (".h"))
-                    ("\\.h"   (".c"".cpp"".cc"))))
+                  '(("\\.cc\\'"  (".hh" ".h"))
+                    ("\\.hh\\'"  (".cc" ".C"))
+
+                    ("\\.c\\'"   (".h"))
+                    ("\\.h\\'"   (".c" ".cc" ".C" ".CC" ".cxx" ".cpp" ".m" ".mm"))
+
+                    ("\\.m\\'"    (".h"))
+                    ("\\.mm\\'"    (".h"))
+
+                    ("\\.C\\'"   (".H"  ".hh" ".h"))
+                    ("\\.H\\'"   (".C"  ".CC"))
+
+                    ("\\.CC\\'"  (".HH" ".H"  ".hh" ".h"))
+                    ("\\.HH\\'"  (".CC"))
+
+                    ("\\.c\\+\\+\\'" (".h++" ".hh" ".h"))
+                    ("\\.h\\+\\+\\'" (".c++"))
+
+                    ("\\.cpp\\'" (".hpp" ".hh" ".h" "_p.h"))
+                    ("\\.hpp\\'" (".cpp"))
+
+                    ("\\.cxx\\'" (".hxx" ".hh" ".h"))
+                    ("\\.hxx\\'" (".cxx"))))
             (setq ff-search-directories
                   '("." "../src" "../include"))
 
