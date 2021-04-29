@@ -107,9 +107,9 @@
 (my/set-initial-frame)
 
 ;; highlight-indent 缩进线
-(require-package 'highlight-indent-guides)
-(add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
-(setq highlight-indent-guides-method 'character)
+;; (require-package 'highlight-indent-guides)
+;; (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
+;; (setq highlight-indent-guides-method 'character)
 
 
 (provide 'init-gui-frames)
