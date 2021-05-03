@@ -101,7 +101,6 @@
                           (print ccls-initialization-options)
                           (lsp)
                           )
-                        ;; (when (derived-mode-p 'c++-mode) (require 'ccls) (lsp))
                         ))
             ;; (add-hook 'c-mode-hook #'lsp)
             ;; (add-hook 'c++-mode-hook #'lsp)
