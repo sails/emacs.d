@@ -2,8 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-;; (defvar +ccls-initial-blacklist [".*"])
-;; (defvar +ccls-initial-whitelist ["qqmail/wwspam.*" "wework/wwspam.*"])
 (defvar +ccls-initial-blacklist [])
 (defvar +ccls-initial-whitelist [])
 
