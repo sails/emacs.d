@@ -2,6 +2,10 @@
 ;;; Commentary:
 ;;; Code:
 
+;; (defvar +ccls-initial-blacklist [".*"])
+;; (defvar +ccls-initial-whitelist ["qqmail/wwspam.*" "wework/wwspam.*"])
+(defvar +ccls-initial-blacklist [])
+(defvar +ccls-initial-whitelist [])
 
 (add-hook 'c-mode-common-hook
           (lambda ()
@@ -67,21 +71,16 @@
             (require 'ccls)
             ;; (setq ccls-initialization-options
             ;;       '(
-            ;;         :index (:threads 1 :initialBlacklist [".*"] :initialWhitelist ["wework/wwlib/.*" "qqmail/wwspam.*" "wework/wwspam.*"])
+            ;;         :index (:threads 1 :initialBlacklist [".*"] :initialWhitelist ["qqmail/wwspam.*" "wework/wwspam.*"])
             ;;         ))
             (setq ccls-initialization-options
-                  '(
-                    :index (:threads 1 :initialBlacklist [".*"] :initialWhitelist ["qqmail/wwspam.*" "wework/wwspam.*"])
-                    ))
-            (setq ccls-initialization-options
-                  (append ccls-initialization-options
-                          `(:clang ,(list :extraArgs ["-isystem/Library/Developer/CommandLineTools/usr/include/c++/v1"
-                                                      "-isystem/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include"
-                                                      "-isystem/Library/Developer/CommandLineTools/usr/lib/clang/12.0.0/include"
-                                                      "-isystem/Library/Developer/CommandLineTools/usr/include"
-                                                      "-isystem/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks"
-                                                      "-isystem/usr/local/include"]
-                                          ))))
+                  `(:clang ,(list :extraArgs ["-isystem/Library/Developer/CommandLineTools/usr/include/c++/v1"
+                                              "-isystem/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include"
+                                              "-isystem/Library/Developer/CommandLineTools/usr/lib/clang/12.0.0/include"
+                                              "-isystem/Library/Developer/CommandLineTools/usr/include"
+                                              "-isystem/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks"
+                                              "-isystem/usr/local/include"]
+                                  )))
             (require-package 'lsp-mode)
             (add-hook 'lsp-mode-hook (lambda ())
                       ;; 顶部目录、文件、方法breadcrumb
@@ -91,8 +90,21 @@
 
             ;; (require-package 'lsp-ui)
 
-            (add-hook 'c-mode-hook #'lsp)
-            (add-hook 'c++-mode-hook #'lsp)
+            ;; directory local variables after major-mode hooks run
+            (add-hook 'hack-local-variables-hook
+                      (lambda ()
+                        (when (derived-mode-p 'c++-mode)
+                          ;; +ccls-initial-blacklist +ccls-initial-whitelist在dir-locals.el重新中设置新值
+                          (setq ccls-initialization-options
+                                (append ccls-initialization-options
+                                        `(:index (:threads 1 :initialBlacklist ,+ccls-initial-blacklist :initialWhitelist ,+ccls-initial-whitelist))))
+                          (print ccls-initialization-options)
+                          (lsp)
+                          )
+                        ;; (when (derived-mode-p 'c++-mode) (require 'ccls) (lsp))
+                        ))
+            ;; (add-hook 'c-mode-hook #'lsp)
+            ;; (add-hook 'c++-mode-hook #'lsp)
             (setq lsp-enable-file-watchers nil)
             ;; 禁用lsp默认的flycheck设置
             (setq lsp-diagnostic-package :none)
