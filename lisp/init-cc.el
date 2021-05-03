@@ -98,7 +98,7 @@
                           (setq ccls-initialization-options
                                 (append ccls-initialization-options
                                         `(:index (:threads 1 :initialBlacklist ,+ccls-initial-blacklist :initialWhitelist ,+ccls-initial-whitelist))))
-                          (print ccls-initialization-options)
+                          ;; (print ccls-initialization-options)
                           (lsp)
                           )
                         ))
