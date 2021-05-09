@@ -95,7 +95,7 @@
 ;; (require 'init-css)
 ;; (require 'init-haml)
 ;; (require 'init-http)
-(require 'init-python)
+;; (require 'init-python)
 ;; (require 'init-haskell)
 ;; (require 'init-elm)
 ;; (require 'init-purescript)
@@ -123,7 +123,7 @@
 (require 'init-common-lisp)
 (require 'init-cc)
 (require 'init-go)
-(require 'init-jce)
+;; (require 'init-jce)
 (require 'init-shell)
 (require 'init-convert)
 
@@ -181,6 +181,9 @@
 ;; Allow users to provide an optional "init-local" containing personal settings
 (require 'init-local nil t)
 
+;; (when (memq window-system '(mac ns))
+;;   (add-to-list 'default-frame-alist '(ns-appearance . dark))
+;;   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t)))
 
 (provide 'init)
 

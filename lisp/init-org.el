@@ -380,6 +380,9 @@ typical word processor."
      (sql . t)
      (sqlite . t))))
 
+
+(maybe-require-package 'org-superstar)
+(add-hook 'org-mode-hook (lambda () (org-superstar-mode 1)))
 
 (provide 'init-org)
 ;;; init-org.el ends here

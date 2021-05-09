@@ -67,18 +67,19 @@
             ;; 续几分钟，所以最好是用daemon模式运行emacs。这里通过限制ccls的threads来限制cpu核数使用
             (require-package 'ccls)
             (require 'ccls)
-            ;; (setq ccls-initialization-options
-            ;;       '(
-            ;;         :index (:threads 1 :initialBlacklist [".*"] :initialWhitelist ["qqmail/wwspam.*" "wework/wwspam.*"])
-            ;;         ))
             (setq ccls-initialization-options
+                  ;; clang -v -fsyntax-only -x c++ /dev/null
                   `(:clang ,(list :extraArgs ["-isystem/Library/Developer/CommandLineTools/usr/include/c++/v1"
                                               "-isystem/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include"
-                                              "-isystem/Library/Developer/CommandLineTools/usr/lib/clang/12.0.0/include"
+                                              "-isystem/Library/Developer/CommandLineTools/usr/lib/clang/12.0.5/include"
                                               "-isystem/Library/Developer/CommandLineTools/usr/include"
                                               "-isystem/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks"
                                               "-isystem/usr/local/include"]
                                   )))
+            ;; (setq ccls-initialization-options
+            ;;       (append ccls-initialization-options
+            ;;               `(:index (:threads 1 :initialBlacklist [".*"] :initialWhitelist ["qqmail/wwspam.*" "wework/wwspam.*"]))))
+
             (require-package 'lsp-mode)
             (add-hook 'lsp-mode-hook (lambda ())
                       ;; 顶部目录、文件、方法breadcrumb
@@ -97,14 +98,16 @@
                                 (append ccls-initialization-options
                                         `(:index (:threads 1 :initialBlacklist ,+ccls-initial-blacklist :initialWhitelist ,+ccls-initial-whitelist))))
                           ;; (print ccls-initialization-options)
+                          (setq lsp-enable-file-watchers nil)
+                          (setq lsp-diagnostic-package :none)
                           (lsp)
                           )
                         ))
             ;; (add-hook 'c-mode-hook #'lsp)
             ;; (add-hook 'c++-mode-hook #'lsp)
-            (setq lsp-enable-file-watchers nil)
-            ;; 禁用lsp默认的flycheck设置
-            (setq lsp-diagnostic-package :none)
+            ;; (setq lsp-enable-file-watchers nil)
+            ;; ;; 禁用lsp默认的flycheck设置
+            ;; (setq lsp-diagnostic-package :none)
 
             ;; 可以很方便的在头文件与cpp文件中切换
             (setq cc-other-file-alist
