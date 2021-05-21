@@ -2,6 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 
+(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
+
 (defvar +ccls-initial-blacklist [])
 (defvar +ccls-initial-whitelist [])
 
