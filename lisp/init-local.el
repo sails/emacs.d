@@ -135,8 +135,8 @@
 
 ;; protobuf
 (require-package 'protobuf-mode)
-;; bazel-mode
-(require-package 'bazel-mode)
+;; bazel
+(require-package 'bazel)
 
 
 (provide 'init-local)
