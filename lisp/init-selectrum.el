@@ -35,6 +35,9 @@
     (global-set-key [remap goto-line] 'consult-goto-line)
 
     (with-eval-after-load 'consult
+      ;; 默认不预览，在切换时按M-.来预览
+      (dolist (src '(consult--source-file consult--source-project-file consult--source-bookmark))
+        (set src (plist-put (symbol-value src) :preview-key (kbd "M-."))))
       (dolist (cmd '(consult-ripgrep sanityinc/consult-ripgrep-at-point))
         (add-to-list 'consult-config
                      `(,cmd :preview-key ,(kbd "M-P")))))
