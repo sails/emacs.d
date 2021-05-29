@@ -6,6 +6,8 @@
 (when (maybe-require-package 'vertico)
   (add-hook 'after-init-hook 'vertico-mode)
 
+  ;; 默认最大10行
+  (setq vertico-count 15)
   (require-package 'orderless)
   (with-eval-after-load 'vertico
     (require 'orderless))
