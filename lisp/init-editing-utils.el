@@ -76,7 +76,7 @@
 
 ;;; Newline behaviour
 
-(global-set-key (kbd "RET") 'newline-and-indent)
+;; (global-set-key (kbd "RET") 'newline-and-indent)  ;; 开启时{回车}时右括号不能自动对齐
 (defun sanityinc/newline-at-end-of-line ()
   "Move to end of line, enter a newline, and reindent."
   (interactive)

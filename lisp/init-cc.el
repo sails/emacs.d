@@ -24,7 +24,7 @@
             ;; (google-set-c-style)
             ;; (c-set-style "mine")
             (google-set-c-style)
-            (google-make-newline-indent)
+            ;; (google-make-newline-indent);; 开启时{回车}时右括号不能自动对齐
 
             ;; flycheck 设置
             (flycheck-mode 0)
