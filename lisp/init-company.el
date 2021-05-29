@@ -11,15 +11,7 @@
 (when (maybe-require-package 'company)
   (add-hook 'after-init-hook 'global-company-mode)
   (with-eval-after-load 'company
-    (dolist (backend '(company-eclim company-semantic))
-      (delq backend company-backends))
     (diminish 'company-mode)
-    (defun sanityinc/company-icons-margin-auto (&rest args)
-      (apply (if (eq 'dark (frame-parameter nil 'background-mode))
-                 #'company-vscode-dark-icons-margin
-               #'company-vscode-light-icons-margin)
-             args))
-    (setq company-format-margin-function #'sanityinc/company-icons-margin-auto)
     (define-key company-mode-map (kbd "M-/") 'company-complete)
     (define-key company-mode-map [remap completion-at-point] 'company-complete)
     (define-key company-mode-map [remap indent-for-tab-command] 'company-indent-or-complete-common)
